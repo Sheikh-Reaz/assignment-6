@@ -18,9 +18,11 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
-    <!-- Navbar -->
+
+  <!-- Navbar -->
+  <header>
     <div class="navbar md:px-20 bg-base-100 bg-[#15803D]">
       <div class="navbar-start">
         <div class="dropdown">
@@ -68,24 +70,53 @@
         </button>
       </div>
     </div>
+  </header>
+  <body>
     <!-- Banner Secction -->
-    <div class="flex flex-col md:flex-row justify-between items-center bg-[#CFF0DC]">
-      <img  src="./assets/hero-leaf1.png" alt="" />
+    <div
+      class="flex flex-col md:flex-row justify-between items-center bg-[#CFF0DC]"
+    >
+      <img src="./assets/hero-leaf1.png" alt="" />
       <div class="space-y-5 items-center text-center">
-         <h3 class="text-4xl font-bold">Plant a Tree, Grow a Future</h3>
+        <h3 class="text-4xl font-bold">Plant a Tree, Grow a Future</h3>
         <p class="text-center">
           Join our mission to plant 1 million trees and make the Earth greener
           for future generations.
         </p>
-        <div class=" pb-6">
-            <button class="btn  bg-[#FACC15] rounded-3xl text-green-800">
-          Get Involved
-        </button>
+        <div class="pb-6">
+          <button class="btn bg-[#FACC15] rounded-3xl text-green-800">
+            Get Involved
+          </button>
         </div>
-       
       </div>
 
-      <img class=" hidden sm:block" src="./assets/hero-leaf2.png" alt="" />
+      <img class="hidden sm:block" src="./assets/hero-leaf2.png" alt="" />
     </div>
+
+    <!-- Card Section -->
+    <!-- <section class="bg-[#DCFCE7]">
+      <div class=" text-center">
+        <h1 class="text-3xl font-semibold">Choose Your Trees</h1>
+      </div>
+      <div class="plant-cards"></div>
+    </section> -->
+
+    <!-- About the Campaign -->
+     <section class="bg-[#DCFCE7] ">
+        
+            <h1 class="text-3xl font-semibold text-center py-10">About the Campaign</h1>
+        
+        <div class="flex flex-col md:flex-row max-w-[1060px] mx-auto">
+            <img src="./assets/about.png" alt="">
+            <div >
+                <p>Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since our start, we’ve planted over 500,000 trees worldwide. By joining our campaign, you help restore forests, create habitats for wildlife, and combat global warming.</p>
+                <ul class="list-disc pl-5">
+                    <li>Restoration of natural habitats</li>
+                    <li>Improvement of air quality</li>
+                    <li>Support for local communities</li>
+                </ul>
+            </div>
+        </div>
+     </section>
   </body>
 </html>
