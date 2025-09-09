@@ -89,7 +89,7 @@ const loadCardAll = () => {
 
               <!-- Button -->
               <button id="addCardContainer"
-                class="w-full cursor-pointer bg-[#15803D] text-white py-2 mt-4 rounded-full font-medium hover:bg-green-400 transition"
+                class="w-full cursor-pointer bg-[#15803D] text-white py-2 mt-4 rounded-full font-medium hover:bg-green-600 transition"
               >
                 Add to Cart
               </button>
