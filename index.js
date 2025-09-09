@@ -1,8 +1,20 @@
 const catagoryContainer = document.getElementById("catagoriesContainer");
+const mobileCategories = document.getElementById("mobileCategories");
+const loadAllCard = document.getElementById("cardContainer");
+const cardContainer = document.getElementById("cardContainer");
 
 // Add to Cart Section.............................
-const cardContainer = document.getElementById("cardContainer");
+
 const yourCart = document.getElementById("yourCart");
+// Remove from cart section.............................
+
+yourCart.addEventListener("click", (e) => {
+  if (e.target.classList.contains("fa-xmark")) {//font awsome theke dawa class 
+    e.target.parentNode.remove();
+    
+    updateTotalPrice();
+  }
+});
 
 //Event Listener
 cardContainer.addEventListener("click", (e) => {
@@ -18,7 +30,7 @@ cardContainer.addEventListener("click", (e) => {
               <i class="fa-solid fa-xmark text-[#8C8C8C]"></i>
             </div>`
 
-    // total price update call
+    
     updateTotalPrice();
   }
 });
@@ -43,7 +55,7 @@ function updateTotalPrice() {
 }
 
 //All plants.......................................
-const loadAllCard = document.getElementById("cardContainer");
+
 
 const loadCardAll = () => {
   fetch("https://openapi.programming-hero.com/api/plants")
@@ -77,7 +89,7 @@ const loadCardAll = () => {
 
               <!-- Button -->
               <button id="addCardContainer"
-                class="w-full cursor-pointer bg-[#15803D] text-white py-2 mt-4 rounded-full font-medium hover:bg-green-600 transition"
+                class="w-full cursor-pointer bg-[#15803D] text-white py-2 mt-4 rounded-full font-medium hover:bg-green-400 transition"
               >
                 Add to Cart
               </button>
@@ -93,7 +105,7 @@ loadCardAll();
 
 //display card......................................
 const loadPlants = (id) => {
-  //load plants by id
+  
   const url = `https://openapi.programming-hero.com/api/category/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -101,7 +113,7 @@ const loadPlants = (id) => {
 };
 
 const displayCard = (plants) => {
-  //display each card
+
   const cardContainer = document.getElementById("cardContainer");
 
   cardContainer.innerHTML = "";
@@ -134,7 +146,7 @@ const displayCard = (plants) => {
 
               <!-- Button -->
               <button id="addCardContainer"
-                class="w-full bg-[#15803D] text-white py-2 mt-4 rounded-full font-medium hover:bg-green-600 transition"
+                class="w-full bg-[#15803D] text-white py-2 mt-4 rounded-full font-medium hover:bg-green-400 transition"
               >
                 Add to Cart
               </button>
@@ -148,8 +160,8 @@ const displayCard = (plants) => {
 
 // Categories.........................................
 const loadCatagories = () => {
-  //Load catagories
-  fetch("https://openapi.programming-hero.com/api/categories") //Load catagories
+
+  fetch("https://openapi.programming-hero.com/api/categories") 
     .then((res) => res.json())
     .then((data) => {
       const categories = data.categories;
@@ -157,15 +169,30 @@ const loadCatagories = () => {
     });
 };
 
+
+//Show Catagories....................................
+
 const showCatagory = (categories) => {
-  //show categories
+  
   categories.forEach((cat) => {
-    catagoryContainer.innerHTML += `<li onClick="loadPlants(${cat.id})" id="${cat.id}" class="hover:bg-[#15803D] hover:text-white rounded-sm font-medium py-2 pl-2">
-              ${cat.category_name}
+
+    catagoryContainer.innerHTML += `
+      <li onClick="loadPlants(${cat.id})" id="${cat.id}" class="hover:bg-[#75cf96] hover:text-white rounded-sm font-medium py-2 pl-2">
+        ${cat.category_name}
+      </li>`;
+
+    // responsive 
+    if (mobileCategories) {
+      mobileCategories.innerHTML += `
+        <li onClick="loadPlants(${cat.id})" class="hover:bg-[#57d384] hover:text-white rounded-sm font-medium">
+          <a>${cat.category_name}</a>
         </li>`;
+    }
   });
+
+  
   catagoryContainer.addEventListener("click", (e) => {
-    const allLi = document.querySelectorAll("li");
+    const allLi = document.querySelectorAll("#catagoriesContainer li");
     allLi.forEach((li) => {
       li.classList.remove("text-white", "bg-[#15803D]");
     });
@@ -177,7 +204,7 @@ const showCatagory = (categories) => {
 };
 loadCatagories();
 
-//Load Plants Detail............................
+//Load Plants Detail..................................
 
 const loadPlantsDetails = async(id)=>{
   const url = `https://openapi.programming-hero.com/api/plant/${id}`
@@ -212,3 +239,9 @@ const displayPlantDetails=(plant) =>{
   document.getElementById("plant_modal").showModal();
   
 }
+
+
+
+
+
+
