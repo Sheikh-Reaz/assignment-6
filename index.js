@@ -63,7 +63,7 @@ const loadCardAll = () => {
 
             <!-- Content -->
             <div class="p-4">
-              <h2 class="text-lg font-semibold text-gray-800">${plant.name}</h2>
+              <h2 onclick="loadPlantsDetails(${plant.id})" class="text-lg font-semibold text-gray-800 cursor-pointer">${plant.name}</h2>
               <p class="text-sm text-gray-600 mt-2">${plant.description}</p>
 
               <!-- Category + Price -->
@@ -120,7 +120,7 @@ const displayCard = (plants) => {
 
             <!-- Content -->
             <div class="p-4">
-              <h2 class="text-lg font-semibold text-gray-800">${plant.name}</h2>
+              <h2 onclick="loadPlantsDetails(${plant.id})" class="text-lg font-semibold text-gray-800 cursor-pointer">${plant.name}</h2>
               <p class="text-sm text-gray-600 mt-2">${plant.description}</p>
 
               <!-- Category + Price -->
@@ -176,3 +176,39 @@ const showCatagory = (categories) => {
   });
 };
 loadCatagories();
+
+//Load Plants Detail............................
+
+const loadPlantsDetails = async(id)=>{
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`
+  // console.log(url);
+  const res = await fetch(url);
+  const details = await res.json();
+  displayPlantDetails(details.plants);
+}
+const displayPlantDetails=(plant) =>{
+  console.log(plant);
+  const detailsBox = document.getElementById("details-container");
+  detailsBox.innerHTML = `
+  
+  <div class="p-2">
+      <h3 class="text-xl font-bold">${plant.name}</h3>
+    </div>
+
+    <!-- Modal Image -->
+    <div class="w-full p-2">
+      <img src="${plant.image}"  class="w-full h-56 object-cover rounded-xl">
+    </div>
+
+    <!-- Modal Content -->
+    <div class="p-2">
+      <p class="font-semibold"><span class="font-bold">Category:</span> ${plant.category} </p>
+      <p class="font-semibold mt-2"><span class="font-bold">Price:</span> ৳${plant.price}</p>
+      <p class="mt-2"><span class="font-bold">Description:</span> ${plant.description} </p>
+    </div>
+  
+  
+  `
+  document.getElementById("plant_modal").showModal();
+  
+}
